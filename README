@@ -1,0 +1,6 @@
+#SDA class NCTU 2020
+this repostitory contains python code for homework in SDA class.
+1. First homework is create another shape from elephant fitting code.
+2. 2nd homework contain 3 task, 1st task is crawling/scraping from goverment open data, and create a visualization about it.
+3. 2nd task is rerun LDA with different K topics.
+4. 3rd task is repair the code for japanese wordcloud. 
