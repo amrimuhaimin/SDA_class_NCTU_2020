@@ -30,6 +30,7 @@ json_tree = json.loads(content)
 
 #simple pre processing
 df = pd.DataFrame(json_tree)
+translator = Translator()
 for col in df.columns:
     df.rename(columns={col:translator.translate(col).text},inplace=True)
 df['latitude'] = df['latitude'].astype(float) #convert string to float
