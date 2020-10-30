@@ -1,0 +1,5 @@
+crawling cryptocurrencies from coinmarketcap.com
+
+see also https://towardsdatascience.com/web-scraping-crypto-prices-with-python-41072ea5b5bf
+
+author: @amrimuhaimin@gmail.com
