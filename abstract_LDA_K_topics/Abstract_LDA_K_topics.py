@@ -7,6 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1m4SfQ-na0h9GQnnA-2jhYVUqa8A4J2Ud
 """
 
+#load library for crawling
 import requests  # take the website source code back to you
 import urllib  # some useful functions to deal with website URLs
 from bs4 import BeautifulSoup as soup  # a package to parse website source code
@@ -17,11 +18,13 @@ import pickle  # a package to save your file temporarily
 import pandas as pd  # process structured data
 import os
 
+#define the link for crawling
 sub_dir = os.getcwd() + "SDA_Task_2"
 cwd_dir = sub_dir if os.path.exists(sub_dir) else os.getcwd()
 base_link = 'http://www.wiwi.hu-berlin.de/de/forschung/irtg/results/discussion-papers'  # This link can represent the domain of a series of websites
 abs_link = 'https://www.wiwi.hu-berlin.de/de/forschung/irtg/results/'
 
+#crawling the abstract by link above.
 request_result = requests.get(base_link, headers={'Connection': 'close'})  # get source code
 parsed = soup(request_result.content)  # parse source code
 tr_items = parsed.find_all('tr')
@@ -73,6 +76,7 @@ for paper in info_list:
 with open('Abstract_all.txt', 'w') as abs_all_f:
   abs_all_f.writelines(abstract_all)
 
+#load library for LDA
 import random
 import os
 import re
@@ -93,7 +97,7 @@ import pandas as pd
 import numpy as np
 
 #declare the number of topics want to be generate and notated by K
-K = 7 #number of topics
+K = 10 #number of topics
 text_pre = open('Abstract_all.txt', encoding = "utf8").read()
 doc_l = str.split(text_pre, sep = 'SEP')
 doc_complete = doc_l
@@ -131,7 +135,7 @@ Lda = gensim.models.ldamodel.LdaModel
 ldamodel = Lda(doc_term_matrix, num_topics=7, id2word = dictionary, passes=50, random_state = 3154)
 #print(ldamodel.print_topics(num_topics=3, num_words=5))
 topicWordProbMat=ldamodel.print_topics(K)
-columns = (['Topics '+str(x) for x in range(1,7+1)])
+columns = (['Topics '+str(x) for x in range(1,K+1)])
 df = pd.DataFrame(columns=columns)
 df = pd.DataFrame(columns = columns)
 pd.set_option('display.width', 1000)
